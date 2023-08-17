@@ -7,6 +7,8 @@ import {
     createRoutesFromElements
 } from 'react-router-dom';
 import Layout from './Layout';
+import Edit from './Views/Edit';
+import Create from './Views/Create';
 
 export default function App() {
     const router = createBrowserRouter(
@@ -14,7 +16,8 @@ export default function App() {
             <>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Dashboard />} />
-                    <Route path="page" element={<>Page</>} />
+                    <Route path="/edit" element={<Edit />} />
+                    <Route path="/create" element={<Create />} />
                 </Route>
                 <Route path="/login" element={<>Login</>} />
                 <Route path="*" element={<>NotFound</>} />

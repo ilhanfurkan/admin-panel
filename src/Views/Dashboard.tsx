@@ -1,80 +1,137 @@
-import React, { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../Store/hooks';
-import { RootState, actions } from '../Store';
-import DefaultRequest from '../Api/DefaultRequest';
-import { RequestParams } from '../Utils/RequestComponent';
-
-import '../App.css';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { Container, Grid, Input } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import ReactHtmlParser from 'react-html-parser';
+import Articles from '../Api/Articles';
+import { Articless } from '../Config/article.config';
+import { useAppSelector } from '../Store/hooks';
 
 export default function Dashboard() {
-    const opened = useAppSelector((state: RootState) => state.mainMenu.status);
-    const products = useAppSelector((state: RootState) => state.default.list);
-    const product = useAppSelector((state: RootState) => state.default.item);
+    const articleList: any = useAppSelector(
+        (state) => (state.articlesReducer as any).list?.result
+    );
+    console.log(articleList, 'articleList');
 
-    const dispatch = useAppDispatch();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [blogData, setBlogData] = useState(articleList);
 
-    const handleOpen = () => dispatch(actions.mainMenu.menuOpen(true));
-    const handleClose = () => dispatch(actions.mainMenu.menuOpen(false));
+    const handleChange = (event: any) => {
+        const newSearchTerm = event.target.value;
+        setSearchTerm(newSearchTerm);
+        const filteredTitles = articleList?.filter((article: any) =>
+            article.title.toLowerCase().includes(newSearchTerm.toLowerCase())
+        );
+        setBlogData(filteredTitles);
+    };
 
-    const handleRequest = () => {
-        setProductRequest({
-            mode: 'list',
+    useEffect(() => {
+        setArticlesRequest({
+            mode: 'articleList',
             payload: {}
         });
-    };
-
-    const handleRequestItem = () => {
-        setProductRequest({
-            mode: 'get',
-            payload: {
-                id: 1
-            }
-        });
-    };
+    }, []);
 
     const handleResponse = (response: any) => {
-        console.log('Response:', response);
+        // console.log('Response:', response);
     };
 
-    const [productRequest, setProductRequest] = useState<RequestParams>({
-        mode: '',
+    const [articlesRequest, setArticlesRequest] = useState<any>({
+        mode: 'articleList',
         payload: {}
     });
 
     return (
-        <div className="App">
-            <DefaultRequest
-                params={productRequest}
+        <Container>
+            <Articles
+                params={articlesRequest}
                 onSuccess={(response: any) => handleResponse(response)}
             />
-            <div className="navigate">
-                <input type="button" value="Open" onClick={handleOpen} />
-                <input type="button" value="Close" onClick={handleClose} />
-                <input
+            <div className="container">
+                <h1
+                    style={{
+                        color: 'rgb(22, 22, 22)',
+                        width: '100%',
+                        textAlign: 'center',
+                        fontSize: '52px',
+                        fontWeight: '500'
+                    }}
+                >
+                    Academy Blog
+                </h1>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: '28px'
+                }}
+            >
+                <Input
                     type="text"
-                    name="value"
-                    id="value"
-                    value={'' + opened}
-                />
-                <input type="button" value="Get List" onClick={handleRequest} />
-                <input
-                    type="button"
-                    value="Get Item"
-                    onClick={handleRequestItem}
+                    name="title"
+                    value={searchTerm}
+                    // ref={inputRef}
+                    placeholder="Search name"
+                    onChange={handleChange}
+                    sx={{
+                        width: '400px'
+                    }}
                 />
             </div>
-            <hr />
-            <textarea
-                rows={20}
-                cols={70}
-                value={JSON.stringify(products)}
-            ></textarea>
-            <textarea
-                rows={20}
-                cols={70}
-                value={JSON.stringify(product)}
-            ></textarea>
-            <hr />
-        </div>
+
+            <Grid container spacing={4}>
+                {blogData?.map((article: any) => (
+                    <Grid item xs={4} key={article.id}>
+                        <Card sx={{ maxWidth: 345, padding: '24px' }}>
+                            <CardMedia
+                                component="img"
+                                sx={{
+                                    height: 240,
+                                    objectFit: 'contain',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                                image="./academy.svg"
+                                title="photo"
+                            />
+                            <CardContent>
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="div"
+                                >
+                                    {article.title}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                    sx={{
+                                        display: '-webkit-box',
+                                        WebkitBoxOrient: 'vertical',
+                                        WebkitLineClamp: 5,
+                                        padding: 0,
+                                        margin: 0,
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis'
+                                    }}
+                                >
+                                    {ReactHtmlParser(article.description)}
+                                </Typography>
+                            </CardContent>
+                            <Link to={`/edit?id=${article.id}`}>
+                                <Button size="small">Edit Article</Button>
+                            </Link>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
     );
 }

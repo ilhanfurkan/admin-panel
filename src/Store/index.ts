@@ -4,6 +4,7 @@ import apiSlice from './apiSlice';
 import wsSlice from './wsSlice';
 import mainMenu from './Reducers/mainMenu';
 import defaultReducer from './Reducers/default';
+import articlesReducer from './Reducers/articlesReducer';
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         wsSlice: wsSlice.reducer,
         default: defaultReducer.reducer,
         /// ************************ ///
-        mainMenu: mainMenu.reducer
+        mainMenu: mainMenu.reducer,
+        articlesReducer: articlesReducer.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
