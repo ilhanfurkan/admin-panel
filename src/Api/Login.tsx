@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RequestComponent from '../Utils/RequestComponent';
 
-export default function Articles({ params, onSuccess }: any) {
+export default function Login({ params, onSuccess }: any) {
     const [requestCount, setRequestCount] = useState(0);
-
-    console.log({ params }, 'params');
 
     const [url, setUrl] = useState('');
     const [method, setMethod] = useState('');
@@ -15,25 +13,11 @@ export default function Articles({ params, onSuccess }: any) {
         setRequestCount(requestCount + 1);
 
         switch (params.mode) {
-            case 'articleList':
-                setUrl('/balance-blog/blogs');
-                setMethod('get');
-                setReduce('article/getList');
-                break;
-            case 'createArticle':
-                setUrl('/balance-blog/blogs');
-                setMethod('post');
+            case 'login':
+                setUrl('/balance-blog/login');
+                setMethod('POST');
                 setPayload(params.payload);
-                break;
-            case 'editArticle':
-                setUrl(`/balance-blog/blogs/${params.payload.id}`);
-                setMethod('patch');
-                setPayload(params.payload);
-                break;
-            case 'deleteArticle':
-                setUrl(`/balance-blog/blogs/${params.payload.id}`);
-                setMethod('delete');
-                setPayload(params.payload);
+                setReduce('login/getJwtToken');
                 break;
         }
     }, [params]);

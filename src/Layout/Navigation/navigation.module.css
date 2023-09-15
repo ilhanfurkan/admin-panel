@@ -1,0 +1,23 @@
+.mobile_pages {
+    text-decoration: none;
+    color: black;
+    border: 1px solid #e3e3e3;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+.mobile_pages_hanlde {
+    width: 160px;
+    display: flex;
+    justify-content: center;
+}
+.mobile_logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mobile_menu {
+    flex-grow: 1;
+    color: black;
+}

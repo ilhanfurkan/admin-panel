@@ -13,13 +13,16 @@ export const apiSlice = createApi({
                 };
 
                 const token: string | null = localStorage.getItem('token');
-
                 if (token) {
                     headers = {
                         ...headers,
                         Authorization: 'Bearer '.concat(token)
                     };
                 }
+                // if(!token) {
+                //     console.log("first")
+                //         window.location.href = '/login';
+                // }
 
                 let parameter: any = {
                     url: url,
@@ -34,13 +37,13 @@ export const apiSlice = createApi({
                 }
 
                 return parameter;
-            },
-            transformErrorResponse: ({ status, data }) => {
-                if (status == 401 || status == 403) {
-                    location.href = '/login';
-                }
-                return data;
             }
+            // transformErrorResponse: ({ status, data }) => {
+            //     if (status == 401 || status == 403) {
+            //         window.location.href = '/login';
+            //     }
+            //     return data;
+            // }
         })
     })
 });

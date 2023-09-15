@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './navigation.module.css';
 
 export default function Navigation() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -46,8 +47,15 @@ export default function Navigation() {
         { id: '2', name: 'Logout', path: '/login' }
     ];
 
+    const handleLogout = (name: string) => {
+        handleCloseUserMenu();
+        if (name === 'Logout') {
+            localStorage.removeItem('token');
+        }
+    };
+
     return (
-        <AppBar position="fixed" sx={{ bgcolor: 'darkgray' }}>
+        <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 'none' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ padding: '16px' }}>
                     <Typography sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -66,10 +74,9 @@ export default function Navigation() {
                     </Typography>
                     <Box
                         sx={{
-                            flexGrow: 1,
-                            display: { xs: 'flex', md: 'none' },
-                            color: 'black'
+                            display: { xs: 'flex', md: 'none' }
                         }}
+                        className={styles.mobile_menu}
                     >
                         <IconButton
                             size="large"
@@ -106,23 +113,11 @@ export default function Navigation() {
                                     onClick={() => {
                                         handleCloseNavMenu();
                                     }}
-                                    sx={{
-                                        width: '160px',
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
+                                    className={styles.mobile_pages_handle}
                                 >
                                     <Link
                                         to={page.path}
-                                        style={{
-                                            textDecoration: 'none',
-                                            color: 'black',
-                                            border: '1px solid #e3e3e3',
-                                            width: '100%',
-                                            padding: '5px',
-                                            borderRadius: '5px',
-                                            textAlign: 'center'
-                                        }}
+                                        className={styles.mobile_pages}
                                     >
                                         {page.name}
                                     </Link>{' '}
@@ -132,11 +127,9 @@ export default function Navigation() {
                     </Box>
                     <Typography
                         sx={{
-                            display: { xs: 'flex', md: 'none' },
-                            position: 'absolute',
-                            left: '50%',
-                            transform: 'translateX(-50%)'
+                            display: { xs: 'flex', md: 'none' }
                         }}
+                        className={styles.mobile_logo}
                     >
                         <Link to={'/'}>
                             <Box
@@ -147,7 +140,7 @@ export default function Navigation() {
                                     mr: 3
                                 }}
                                 alt="The house from the offer."
-                                src="./swap-logo-light-new.webp"
+                                src="./academy.svg"
                             />
                         </Link>
                     </Typography>
@@ -180,12 +173,11 @@ export default function Navigation() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0, display: 'flex', gap: '20px' }}>
-                        <Tooltip title="Open settings">
+                        <Tooltip title="Click">
                             <IconButton
                                 onClick={handleOpenUserMenu}
                                 sx={{
-                                    display: 'flex',
-                                    border: '1px solid gray'
+                                    display: 'flex'
                                 }}
                             >
                                 <SvgIcon
@@ -235,6 +227,7 @@ export default function Navigation() {
                             {settings.map((setting) => (
                                 <MenuItem
                                     key={setting.id}
+                                    onClick={() => handleLogout(setting.name)}
                                     sx={{
                                         width: '160px',
                                         display: 'flex',

@@ -1,0 +1,100 @@
+.container {
+    padding-inline: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.academy_title {
+    color: rgb(22, 22, 22);
+    width: 100%;
+    text-align: center;
+    font-size: 52px;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.search_input {
+    display: flex;
+    justify-content: center;
+    padding: 28px;
+}
+.search_input input {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #fbbe164a !important;
+}
+.articles_container {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    padding: 12px;
+    padding-bottom: 40px;
+    margin-top: 12px !important;
+    min-height: 440px;
+    border: 1px solid rgb(239, 239, 239);
+    box-shadow: 4px 4px 10px #bababa;
+}
+.article_card {
+    max-width: 340px;
+    height: 500px;
+    padding: 40px;
+    cursor: pointer;
+    background-color: white;
+    position: relative;
+    top: 0px;
+    transition: top 0.3s ease !important;
+}
+.article_card:hover {
+    background-color: #b9b9b922;
+    position: relative;
+    top: -8px;
+    transition: top 0.3s ease;
+}
+.card_media {
+    height: 240px;
+    object-fit: contain !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.article_body {
+    display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    block-size: 112px;
+    border-bottom: 1px solid gray;
+    box-shadow: 0px 3px 5px 0px gray;
+    text-align: center;
+    padding-inline: 12px;
+}
+.edit_button {
+    display: flex;
+    justify-content: center;
+}
+.button {
+    position: absolute !important;
+    bottom: 40px !important;
+    color: #fbbe16 !important;
+    border: 1px solid #fbbe16 !important;
+}
+
+.article_title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.not_found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 32px;
+    box-shadow: inset 0px 0px 25px 8px rgba(174, 174, 174, 0.9);
+    border-radius: 12px;
+    padding: 24px;
+    background-color: rgb(240, 240, 240);
+}

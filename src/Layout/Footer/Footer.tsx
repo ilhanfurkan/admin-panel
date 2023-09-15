@@ -3,17 +3,11 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { Box } from '@mui/material';
+import styles from './footer.module.css';
 
 export default function Footer() {
     return (
-        <Box
-            sx={{
-                backgroundColor: 'darkgray',
-                p: 6,
-                width: '100%'
-            }}
-            component="footer"
-        >
+        <Box className={styles.footer_container} component="footer">
             <Container maxWidth="sm">
                 <Typography
                     variant="body2"

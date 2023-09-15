@@ -1,35 +1,16 @@
 import { Outlet } from 'react-router-dom';
-import Navigation from './Navigation';
-import Footer from './Footer';
+import Navigation from './Navigation/Navigation';
+import Footer from './Footer/Footer';
+import styles from './index.module.css';
 
 export default function Layout() {
     return (
-        <div
-            className="main"
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                minHeight: '100vh'
-            }}
-        >
-            <div
-                className="navbar"
-                style={{ marginBlockEnd: '20px', marginBlockStart: '100px' }}
-            >
+        <div className={styles.container}>
+            <div className={styles.navbar}>
                 <Navigation />
             </div>
             <Outlet />
-            <div
-                className="footer"
-                style={{
-                    position: 'relative',
-                    bottom: '0px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginBlockStart: '30px'
-                }}
-            >
+            <div className={styles.footer}>
                 <Footer />
             </div>
         </div>

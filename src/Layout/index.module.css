@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.navbar {
+    margin-block-end: 20px;
+    margin-block-start: 100px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    margin-block-start: 30px;
+}

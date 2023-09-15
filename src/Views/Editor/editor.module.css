@@ -1,0 +1,94 @@
+.editor_title {
+    color: rgb(22, 22, 22);
+    width: 100%;
+    text-align: center;
+    font-size: 52px;
+    font-weight: 500;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.form_control {
+    display: flex !important;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.little_form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    padding-block: 32px;
+    padding-inline: 28px;
+}
+
+.input_form {
+    inline-size: 630px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 630px;
+    background-color: white;
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.button {
+    color: #fbbe16 !important;
+    border: 1px solid #fbbe16 !important;
+    color: black;
+    width: max-content;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 16px;
+}
+.button:hover {
+    background-color: #fbbe16;
+    color: white !important;
+    transition: 0.3s;
+}
+
+.put_comma {
+    font-size: 12px;
+    margin-block-start: -32px;
+    font-weight: 200;
+    color: #b52634;
+}
+
+.image_link_input {
+    inline-size: 100%;
+}
+
+.image_container {
+    border-radius: 12px;
+    padding: 32px;
+    background-color: white;
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+}
+.image_container img {
+    object-fit: contain;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.button_handle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.edit_button {
+    background-color: white !important;
+    width: 300px !important;
+    color: black !important;
+}
+
+.edit_button:hover {
+    background-color: rgb(225, 225, 225) !important;
+}

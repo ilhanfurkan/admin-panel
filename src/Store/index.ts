@@ -5,6 +5,7 @@ import wsSlice from './wsSlice';
 import mainMenu from './Reducers/mainMenu';
 import defaultReducer from './Reducers/default';
 import articlesReducer from './Reducers/articlesReducer';
+import loginReducer from './Reducers/loginReducer';
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         default: defaultReducer.reducer,
         /// ************************ ///
         mainMenu: mainMenu.reducer,
-        articlesReducer: articlesReducer.reducer
+        articlesReducer: articlesReducer.reducer,
+        loginReducer: loginReducer.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
